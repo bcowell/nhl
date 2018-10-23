@@ -17,7 +17,7 @@ const App = ({ store }) =>
         <>
             <header><Navbar /></header>
             <main className="site-content padding">
-                {Routes}
+                <Routes />
             </main>
             <footer><Footer /></footer>
         </>
