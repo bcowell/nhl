@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import doFetchTeams from './actions';
 import Team from '../team/component';
+import _ from 'lodash';
 
 class Teams extends Component {
 
     componentDidMount() {
-        this.props.fetchTeams()
-            .then(() => {
-                this.props.teams.map(team => 
-                    console.log(team.name)
-                )
-            })
+        this.props.fetchTeams();
     }
 
     render() {
+        let teams = _.filter(this.props.teams, t => _.includes(t.name.toLowerCase(), this.props.searchQuery.toLowerCase()))
+
         return (
             <div className="teams">
-                {( this.props.teams || []).map(team =>
-                    <Team key={team.id} team={team} />
-                )}
+                { 
+                    (teams || []).map(team =>
+                        <Team key={team.id} team={team} />
+                    )
+                }
             </div>
         );
     }
@@ -27,6 +27,7 @@ class Teams extends Component {
 
 const mapStateToProps = state => ({
     teams: state.teams,
+    searchQuery: state.searchQuery
 });
 
 const mapDispatchToProps = dispatch => ({

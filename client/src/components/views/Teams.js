@@ -1,9 +1,11 @@
 import React from 'react';
 import TeamsComponent from '../teams/component';
+import Search from '../search/component';
 
 const Teams = () =>
     < >
-        <h1>Teams</h1>
+        <h1 className="page-title">Teams</h1>
+        <Search />
         <TeamsComponent />
     </>
 

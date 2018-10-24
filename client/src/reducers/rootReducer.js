@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import teams from '../components/teams/reducer';
+import teamsReducer from '../components/teams/reducer';
+import searchReducer from '../components/search/reducer';
 
 const rootReducer = combineReducers({
-    teams: teams,
+    teams: teamsReducer,
+    searchQuery: searchReducer,
 })
 
 export default rootReducer;

@@ -7,6 +7,7 @@ const Navbar = () =>
             <a href="/" className="logo">Home</a>
         </div>
         <div className="right">
+            <a href="/teams" className="logo">Teams</a>
         </div>
     </div>
 
