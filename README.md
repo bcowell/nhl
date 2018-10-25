@@ -44,13 +44,14 @@ In nhl teams are split into two conferences East/West and then sub divided into 
 
 # Ideas
 Tables/stats view of players/teams/positions for the nhl
-
+```
 /                   - landing a nice table view of the current east/west team rankings
 /teams              - A searchable list of all nhl teams where you can 
     /teams:id/stats - view a teams stats
 /positions          -
+```
 
-#Todo
+# Todo
 Add toggle for Eastern/Western conference on home page - currently just defaulted to Eastern in state
 Stats for individual teams
 Host project (Netlify/Github)
