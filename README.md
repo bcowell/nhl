@@ -18,23 +18,23 @@ $ npm run build
 README.md
 .gitignore
 client/
+    build/
     public/
     src/
-        actions/
-        api/
         components/
+            App.js
+            x/
+                actions
+                reducer
+                x.js
         constants/
+            actionTypes
+            api
         reducers/
+            rootReducer
         store/
+            store.js
         index.js
-server/
-    .babelrc
-    dist/
-    src/
-        router.js
-        server.js
-        controllers/
-            car.js
 ```
 
 # Notes
@@ -50,7 +50,9 @@ Tables/stats view of players/teams/positions for the nhl
     /teams:id/stats - view a teams stats
 /positions          -
 
-#TODO
-Update Folder Structure in README
+#Todo
 Add toggle for Eastern/Western conference on home page - currently just defaulted to Eastern in state
 Stats for individual teams
+Host project (Netlify/Github)
+Add team icons
+Add loading animation
