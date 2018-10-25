@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route} from 'react-router-dom';
+import { Split } from 'grommet';
 import './App.css';
 import Navbar from './navbar/Navbar';
-import Footer from './footer/Footer';
 import HomeView from './views/Home';
 import TeamsView from './views/Teams';
 
@@ -14,13 +14,12 @@ const Routes = () =>
 
 const App = ({ store }) =>
     <BrowserRouter className="site">
-        <>
+        <Split flex="right">
             <header><Navbar /></header>
             <main className="site-content padding">
                 <Routes />
             </main>
-            <footer><Footer /></footer>
-        </>
+        </Split>
     </BrowserRouter>
 
 export default App;

@@ -1,8 +1,9 @@
 import React from 'react';
+import Standings from '../standings/standings';
 
 const Home = () =>
     < >
-        <h1>Hello world</h1>
+        <Standings />
     </>
 
 export default Home;

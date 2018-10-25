@@ -1,6 +1,6 @@
 import React from 'react';
-import TeamsComponent from '../teams/component';
-import Search from '../search/component';
+import TeamsComponent from '../teams/teams';
+import Search from '../search/search';
 
 const Teams = () =>
     < >

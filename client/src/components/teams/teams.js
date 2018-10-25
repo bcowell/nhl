@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import doFetchTeams from './actions';
-import Team from '../team/component';
+import Team from '../team/team';
 import _ from 'lodash';
 
 class Teams extends Component {
