@@ -5,11 +5,15 @@ import './App.css';
 import Navbar from './navbar/Navbar';
 import HomeView from './views/Home';
 import TeamsView from './views/Teams';
+import TeamView from './views/Team';
+import PlayerView from './views/Player';
 
 const Routes = () =>
     <>
         <Route exact path="/" component={HomeView} />
-        <Route path="/teams" component={TeamsView} />
+        <Route path="/teams/:id/:player" component={PlayerView} />
+        <Route exact path="/teams/:id" component={TeamView} />
+        <Route exact path="/teams" component={TeamsView} />
     </>
 
 const App = ({ store }) =>
