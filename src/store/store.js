@@ -1,4 +1,5 @@
 import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from '../reducers/rootReducer';
 import { baseURL } from '../constants/api';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -15,6 +16,7 @@ const store = createStore(
     composeWithDevTools(
         applyMiddleware(
             axiosMiddleware(client),
+            thunk
         )
     )
 )
