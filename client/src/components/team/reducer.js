@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { TEAM_FETCH_SUCCESS, PLAYER_IMAGE } from '../../constants/actionTypes';
 
 const teamSelector = (state, action) => {
@@ -6,12 +7,17 @@ const teamSelector = (state, action) => {
 
 const imagesSelector = (state, action) => {
     let newState = [...state];
+    let images = action.payload.images;
+
      (newState || []).map(player => {
         let id = player.person.id;
+        let image = _.find(images, {id});
         console.log(id)
-        console.log(action.payload.images)
-        return player.person.image = action.payload.images[id]
+        console.log(images)
+        console.log(image); 
+        return player.person.image = image
     })
+    console.log(images);
     return newState;
 }
 

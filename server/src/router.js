@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import {} from 'dotenv/config';
 import _ from 'lodash';
 import YahooFantasy from 'yahoo-fantasy';
 // import cars from './controllers/cars';
 
+/*
 var yf = new YahooFantasy(
     //Y!APPLICATION_KEY,
     //Y!APPLICATION_SECRET
@@ -13,16 +15,19 @@ yf.setUserToken(
     //Y!CLIENT_TOKEN,
     //Y!CLIENT_SECRET
 );
+*/
+
 
 // Initialize the router
 const router = Router();
-/*
-router
-      .route('/cars')
-      .get((req,res) => {
-            res.send(cars);
-      });
 
+router
+      .route('/env')
+      .get((req,res) => {
+            //res.send('hi')
+            res.send(`hi${process.env.TEST}`);
+      });
+/*
 router
       .route('/availability')
       .get((req,res) => {

@@ -25,8 +25,8 @@ const loadImages = (images) => (
 const doFetchTeam = (query) => {
     return dispatch => {
         dispatch(fetchFromQuery(query)).then(res => {
-            console.log(res.payload.data.teams[0].roster.roster)
-            let images = {};
+
+            let images = [];
             let data = res.payload.data.teams[0].roster.roster;
 
             (data || []).map(p => {
@@ -34,8 +34,7 @@ const doFetchTeam = (query) => {
 
                 return axios.get(`${imagesBaseURL}${id}.jpg`, { responseType: 'arraybuffer' })
                 .then(response => {
-                    let image = new Buffer(response.data, 'binary').toString('base64');
-                    images[id] = image;
+                    images.push({ "id": id, "base64Image": new Buffer(response.data, 'binary').toString('base64') })
                 })
             });
 
