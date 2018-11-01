@@ -1,8 +1,8 @@
 import { teams, imagesBaseURL } from '../../constants/api';
-import { TEAM_FETCH, PLAYER_IMAGE } from '../../constants/actionTypes';
+import { TEAM_FETCH, PLAYER_IMAGE_LOAD } from '../../constants/actionTypes';
 import axios from 'axios';
 
-const fetchFromQuery = (query) => (
+const fetchTeam = (query) => (
     { 
         type: TEAM_FETCH, 
         payload: { 
@@ -15,7 +15,7 @@ const fetchFromQuery = (query) => (
 
 const loadImages = (images) => (
     { 
-        type: PLAYER_IMAGE, 
+        type: PLAYER_IMAGE_LOAD, 
         payload: { 
            images
         } 
@@ -23,23 +23,29 @@ const loadImages = (images) => (
 )
 
 const doFetchTeam = (query) => {
-    return dispatch => {
-        dispatch(fetchFromQuery(query)).then(res => {
+    return async (dispatch, getState) => {
+
+        const roster = getState().roster;
+        console.log(roster)
+        try {
+            const getTeam = await dispatch(fetchTeam(query));
 
             let images = [];
-            let data = res.payload.data.teams[0].roster.roster;
 
-            (data || []).map(p => {
-                let id = p.person.id;
-
-                return axios.get(`${imagesBaseURL}${id}.jpg`, { responseType: 'arraybuffer' })
-                .then(response => {
-                    images.push({ "id": id, "base64Image": new Buffer(response.data, 'binary').toString('base64') })
+            const getImages = Promise.all(
+                (roster || []).map(p => {
+                    let id = p.person.id;
+                    return axios.get(`${imagesBaseURL}${id}.jpg`, { responseType: 'arraybuffer' })
+                    .then(response =>
+                        images.push({ "id": id, "base64Image": new Buffer(response.data, 'binary').toString('base64') })
+                    )
                 })
+            )
+            Promise.all([getTeam, getImages]).then(images => {
+                console.log(JSON.stringify(images))
+                dispatch(loadImages(images));
             });
-
-            dispatch(loadImages(images));
-        })
+        } catch (e) {}
     }
 }
 
