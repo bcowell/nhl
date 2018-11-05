@@ -9,14 +9,14 @@ class Team extends Component {
     }
 
     render() {
-        const { roster } = this.props
+        const { team, roster } = this.props
         return (
             <div>
-                { 
+                <h2>{team.name}</h2>
+                {
                     (roster || []).map(r =>
-                        <div key={r.person.id}>
-                            <img src={`data:image/jpeg;base64,${r.person.image||''}`} alt='' />
-                            <div>{r.person.id}</div>
+                        <div key={team.id}>
+                            <a href={`/teams/${this.props.id}/${r.person.id}`}>{r.person.id}</a>
                             <div>{r.person.fullName}</div>
                             <div>{r.position.name}</div>
                         </div>
@@ -28,7 +28,8 @@ class Team extends Component {
 }
 
 const mapStateToProps = state => ({
-    roster: state.roster,
+    team: state.team,
+    roster: state.team.roster.roster,
 });
 
 const mapDispatchToProps = dispatch => ({

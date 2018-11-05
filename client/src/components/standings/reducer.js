@@ -1,8 +1,7 @@
 import { STANDINGS_FETCH_SUCCESS } from '../../constants/actionTypes';
 
 const standingsSelector = (state, action) => {
-    const records = action.payload.data.records;
-    return [...state, ...records]
+    return [...action.payload.data.records]
 }
 
 const teamsReducer = (state = [], action) => {

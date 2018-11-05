@@ -8,7 +8,7 @@ import playerReducer from '../components/player/reducer';
 const rootReducer = combineReducers({
     teams: teamsReducer,
     player: playerReducer,
-    roster: teamReducer,
+    team: teamReducer,
     searchQuery: searchReducer,
     standings: standingsReducer,
 })

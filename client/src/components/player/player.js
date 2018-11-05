@@ -10,19 +10,18 @@ class Player extends Component {
 
     render() {
         const { player } = this.props
-        return (
-            <div>
-                { 
-                    (player || []).map(p =>
-                        <div key={p.id}>
-                            <div>{p.fullName}</div>
-                            <div>{p.height}</div>
-                            <div><a href={`/teams/${p.currentTeam.id}`}>{p.currentTeam.name}</a></div>
-                        </div>
-                    )
-                }
-            </div>
-        );
+        const playerView = (
+            player && player.currentTeam ?
+                <div key={player.id}>
+                    <img src={`data:image/jpeg;base64,${player.image||''}`} alt='' />
+                    <div>{player.fullName}</div>
+                    <div>{player.height}</div>
+                    <div><a href={`/teams/${player.currentTeam.id}`}>{player.currentTeam.name}</a></div>
+                </div>
+            : ''
+        )
+
+        return playerView
     }
 }
 

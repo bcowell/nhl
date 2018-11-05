@@ -1,7 +1,7 @@
 import { TEAMS_FETCH_SUCCESS } from '../../constants/actionTypes';
 
 const teamSelector = (state, action) => {
-    return [...state, ...action.payload.data.teams]
+    return action.payload.data.teams
 }
 
 const teamsReducer = (state = [], action) => {

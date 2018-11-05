@@ -11,8 +11,14 @@ const client = axios.create({
     responseType: 'json'
 });
 
+// If we have the reduxStore saved in localStorage set initialState
+const persistedState = localStorage.getItem('reduxState') 
+    ? JSON.parse(localStorage.getItem('reduxState')) 
+    : {}
+
 const store = createStore(
-    rootReducer, 
+    rootReducer,
+    persistedState,
     composeWithDevTools(
         applyMiddleware(
             axiosMiddleware(client),
@@ -20,5 +26,9 @@ const store = createStore(
         )
     )
 )
+
+store.subscribe(()=> {
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+})
 
 export default store;
